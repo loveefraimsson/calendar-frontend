@@ -6,15 +6,20 @@ import React from "react";
 class AddToDo extends React.Component {
 
     state = {
-        toDoList: this.props.toDoList,
+        //toDoList: this.props.toDoList,
+        toDoList: "",
         newToDo: "",
-        clickedId: this.props.clickedId,
+        //clickedId: this.props.clickedId,
     }
 
 
-
-
-
+    // componentDidUpdate = (prevProps, prevState) => {
+    //     if(prevState.toDoList === this.state.toDoList) {
+    //       //console.log("PrintCal1:", this.state.toDoList);
+    //       this.setState({toDoList: this.props.toDoList})
+    //       //console.log("PrintCal2:", this.state.toDoList);
+    //     }      
+    // }
 
     onChange = (evt) => {
         //console.log(evt);

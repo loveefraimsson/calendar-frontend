@@ -1,3 +1,28 @@
+.week-day {
+  padding: 5px;
+}
+
+.calendar-day {
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* CALENDER */
 /* variables & mixins */
 /* @white: #FFFFFF;
@@ -21,154 +46,27 @@
     font-size: 62.5%;
 } */
 
-.upper-section {
-  display: flex;
+/* .calendar {
+  height: 800px;
+  width: 800px;
+  border: 2px solid black;
 }
 
-.addToDoForm {
-  background-color: bisque;
-  padding: 20px;
-  height: fit-content;
+.calendar-header {
+  height: 100px;
+  border: 2px solid black;
 }
 
-body {
-    background: grey;
+.dayBox {
+  border: 2px solid black;
+  height: 50px;
+  width: 50px;
 }
 
-.week-row {
-    display: flex;
-    width: 100%;
-}
 
-.row-week {
-  display: flex;
-  width: 100%;
-}
-
-.calendar {
-    display: block;
-    background:white;
-    width: 800px;
-    height: fit-content;
-    border: solid 1px black;
-    /* margin: 10px auto; */
-    box-shadow: 0 0 15px 0 grey;
-    font-size: 1.3rem;
-    text-align: center;
-}
-
-.calendar header {
-    /* display: flex;
-    justify-content:center;
-    align-items: center; */
-    color: green;
-    cursor: default;
-    font-size:1.4rem;
-    display: block;
-    font-weight: bold;
-    text-transform: uppercase;
-    user-select: none;
-}
-        
-.calendar header .month-display {
-    align-items: center;
-    height: 40px;
-    background: grey;
-}
-
-.calendar header .month-display .month-label { 
-  flex: 1;
-}
-      
-.calendar header .month-display .month-label .arrow {
-  text-align: center;
-  flex-basis: 15%;
-  font-weight: bold;
-  cursor: pointer;
-  transition: .2s;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-          
-.calendar header .month-display .month-label .arrow:hover {
-    background: red;
-}
-
+.dayBoxContainer {
   
-.week {
-    border-top: solid 1px black;
-}
-
-.week:first-child {
-    border-top: none;
-}
-
-  
-.day-names {
-    color: black;
-    font-weight: bold;
-    cursor: default;
-    font-size: 1.2rem;
-}
-        
-.day-names .day {
-  cursor: default;
-}
-            
-.day-names .day:hover {
-  background: inherit;
-}
-  
-.day {
-    flex: 1;
-    height: 100px;
-    border: solid 1px black;
-    cursor: pointer;
-    transition: all .2s;
-    display: flex;
-    width: 100%;
-}
-
-.addToDoButton {
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  padding: 0;
-  cursor: pointer;
-}
-
-.addToDoButton:hover {
-  background-color: lightblue;
-}
-
-.day:hover {
-  background: grey;
-}
-
-.day:first-child {
-    border-left:none;
-}
-
-.day.today {
-    background: darkgrey;
-}
-
-.day.different-month {
-    color: grey;
-}
-
-.day.selected {
-    background: lightgreen;
-    color: black;
-}
-
-
-
-
-
-
+} */
 
 
 
