@@ -71,7 +71,7 @@ class App extends React.Component {
           {/* selectedDay={this.state.selectedDay} */}
           <br /> <br />
           {/* <PrintCalendar toDoList={this.state.toDoList} getNewId={this.saveNewId} /> */}
-          <AddToDo toDoList={this.state.toDoList} getNewList={this.saveNewList}/>
+          {/* <AddToDo toDoList={this.state.toDoList} getNewList={this.saveNewList}/> */}
           {/* clickedId={this.state.clickedId} getNewList={this.saveNewList} */}
         </section>
 

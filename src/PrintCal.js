@@ -1,6 +1,7 @@
 //import { Calendar } from "calendar";
 import { months, weekdays } from "moment";
 import React from "react";
+import GetList from "./GetList";
 
 let moment = require("moment");
 
@@ -14,10 +15,21 @@ class PrintCal extends React.Component {
     }
 
 
+    componentDidMount = () => { 
+
+        GetList((data) => {      
+          //console.log(data);
+          this.setState({toDoList: data})
+          //console.log("state efter setState: ", this.state.toDoList);
+        })
+    }
+
 
 
     // componentDidUpdate = (prevProps, prevState) => {
     //     if (prevState.toDoList === this.state.toDoList) {
+
+    //         this.setState({toDoList: })
     //         // GetList((data) => {
     //         //     console.log("data", data);
     //         //     this.setState({toDoList: data});
@@ -25,16 +37,6 @@ class PrintCal extends React.Component {
     //     }  
     // }
 
-    // componentDidMount = (prevProps, prevState) => {
-    //     if (prevState.toDoList !== this.props.toDoList) {
-
-    //         this.setState({toDoList: this.props.toDoList})
-    //         // GetList((data) => {
-    //         //     console.log("data", data);
-    //         //     this.setState({toDoList: data});
-    //         // }, this.state.toDoList);
-    //     }  
-    // }
 
 
 
@@ -118,6 +120,8 @@ class PrintCal extends React.Component {
 
 
 
+
+
         let blanks = [];
         for(let i = 0; i < this.firstDayOfMonth(); i++) {
             blanks.push(<td className="calender-day empty">{""}</td>);
@@ -152,10 +156,9 @@ class PrintCal extends React.Component {
 
 
 
-
-            // let list = this.props.toDoList;           
-            // console.log("list", list);
-
+            let list = [];
+            list = this.state.toDoList;       
+            console.log("list", list);
 
             
             // {
