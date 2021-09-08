@@ -52,13 +52,17 @@ class App extends React.Component {
   //   this.setState({clickedId: id})
   // }
 
-  saveNewList = (newList) => {
-    this.setState({toDoList: newList})
-  }
+  // saveNewList = (newList) => {
+  //   this.setState({toDoList: newList})
+  // }
 
-  saveSelectedDay = (saveDay) => {
-    this.setState({selectedDay: saveDay})
-  }
+  // saveSelectedDay = (saveDay) => {
+  //   this.setState({selectedDay: saveDay})
+  // }
+
+  savenewtodo = (todo) => {
+    this.setState({toDoList: todo})
+  } 
 
 
   
@@ -66,8 +70,9 @@ class App extends React.Component {
 
     return (
       <section className="container">
-        <section className="upper-section">
-          <PrintCal toDoList={this.state.toDoList} getSelectedDay={this.saveSelectedDay} />
+        <section className="upper-section-container">
+          <PrintCal toDoList={this.state.toDoList} getnewtodo={this.savenewtodo}  />
+          {/* getSelectedDay={this.saveSelectedDay} */}
           {/* selectedDay={this.state.selectedDay} */}
           <br /> <br />
           {/* <PrintCalendar toDoList={this.state.toDoList} getNewId={this.saveNewId} /> */}

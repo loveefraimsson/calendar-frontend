@@ -2,6 +2,7 @@
 import { months, weekdays } from "moment";
 import React from "react";
 import GetList from "./GetList";
+import AddToDo from "./AddToDo";
 
 let moment = require("moment");
 
@@ -14,15 +15,15 @@ class PrintCal extends React.Component {
         toDoList: this.props.toDoList,
     }
 
+    //KOMMENTERA FRAM DETTA OM MAPPEN INTE FUNGERAR OCH ÄNDRA ATT DEN MAPPA PROPPS
+    // componentDidMount = () => { 
 
-    componentDidMount = () => { 
-
-        GetList((data) => {      
-          //console.log(data);
-          this.setState({toDoList: data})
-          //console.log("state efter setState: ", this.state.toDoList);
-        })
-    }
+    //     GetList((data) => {      
+    //       //console.log(data);
+    //       this.setState({toDoList: data})
+    //       //console.log("state efter setState: ", this.state.toDoList);
+    //     })
+    // }
 
 
 
@@ -102,6 +103,11 @@ class PrintCal extends React.Component {
        // console.log("yearToId:", yearToId);
        return yearToId;
     }
+
+    saveNewList = (newList) => {
+        this.setState({toDoList: newList})
+        this.props.getnewtodo(this.state.toDoList)
+    }
     
 
     render() {
@@ -112,7 +118,7 @@ class PrintCal extends React.Component {
 
         let allWeekdayNames = weekdayNames.map(day => {
             return (
-                <th key={day} className="week-day">
+                <th key={day} className="weekdayName">
                     {day}
                 </th>
               );
@@ -147,53 +153,51 @@ class PrintCal extends React.Component {
             let datum = yearToId + "-" + monthToId + "-" + d;
             //console.log(datum);
 
-            //let aList = this.props.toDoList;
-            //console.log(aList);
-
-
-
-
-
-
 
             let list = [];
-            list = this.state.toDoList;       
-            console.log("list", list);
+            //HÄR KAN DU BEHÖVA ÄNDRA TILL STATE OM DU KOMMENTERAR FRAM DÄR UPPE
+            list = this.props.toDoList;       
+            //console.log("list", list);
 
-            
             // {
-            //     list.map((task) => {
-            //         console.log(task);
+            //     Object.values(list).map((task, i) => {
+            //         console.log("task map", task);
+
+            //         if(datum === task.deadline && task.done === "false") {
+            //             console.log("task.title", task.title);
+            //             return (
+            //                 <> 
+            //                     <p>{task.title}</p>
+            //                     {console.log("Nu har det skrivits ut")}
+            //                 </>
+            //                 )
+            //         }
+
             //     })
-            // }
-
-
-
-
-
-
-            // {
-            //   list.map((thing) => {
-            //     //console.log("thing", thing);
-            //     //console.log("thing.deadline", thing.deadline);
-            //     //console.log(date.format("YYYY-MM-DD")); 
-            //     if (datum === thing.deadline && thing.done === "false") { //thing.deadline === "2021-09-20"
-            //       //console.log("Här är samma");
-                
-            //       return (
-            //         <> 
-            //           <p>{thing.title}</p>
-            //           {console.log("Nu har det skrivits ut")}
-            //         </>
-            //       )
-                  
-                  
-            //     }
-                
-            //   })
             // } 
 
-            daysInMonth.push(<td id={datum} onClick={this.clickOnDay} key={d} className="calendar-day">{d}</td>);
+            daysInMonth.push(
+                <td id={datum} onClick={this.clickOnDay} key={d} className="calendar-day">
+                    
+                    {d}
+                    {
+                        Object.values(list).map((task, i) => {
+                        //console.log("task map", task);
+
+                        if(datum === task.deadline && task.done === "false") {
+                            //console.log("task.title", task.title);
+                            return (
+                                <> 
+                                    <p>{task.title}</p>
+                                    {/* {console.log("Nu har det skrivits ut")} */}
+                                </>
+                                )
+                        }
+
+                    })
+                    } 
+                </td>
+            );
         }
 
 
@@ -216,7 +220,7 @@ class PrintCal extends React.Component {
         })
 
         let daysinmonth = rows.map((d, i) => {
-            return <tr>{d}</tr>;
+            return <tr className="calender-week-row">{d}</tr>;
         });
 
 
@@ -224,22 +228,29 @@ class PrintCal extends React.Component {
 
 
         return(
-            <section>
-                <div>
-                    <span onClick={e => {this.onPrev();}} className="calendar-button-prev" >-</span>
-                    {this.currentMonth()} {this.currentYear()}
-                    <span onClick={e => {this.onNext();}} className="calendar-button-next" >+</span>
-                </div>
-                <table className="calendar">
-                    
-                    <thead>
-                        <tr> {allWeekdayNames}</tr>
-                    </thead>
-                    <tbody>
-                        {daysinmonth}
-                    </tbody>
-                </table>
+            <section className="upper-section">
+                <section className="calender-container">
+                    <div className="calender-header">
+                        <span onClick={e => {this.onPrev();}} className="calendar-button-prev" >-</span>
+                        {this.currentMonth()} {this.currentYear()}
+                        <span onClick={e => {this.onNext();}} className="calendar-button-next" >+</span>
+                    </div>
+                    <table className="calendar">
+                        
+                        <thead className="weekdayNames-container">
+                            <tr> {allWeekdayNames}</tr>
+                        </thead>
+                        <tbody>
+                            {daysinmonth}
+                        </tbody>
+                    </table>
+                </section>
+
+                <section className="addToDo-container">
+                    <AddToDo toDoList={this.state.toDoList} selectedDay={this.state.selectedDay} getNewList={this.saveNewList}/>
+                </section>
             </section>
+            
 
         )
 

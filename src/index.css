@@ -1,4 +1,15 @@
-.week-day {
+.upper-section {
+  display: flex;
+}
+
+.addToDo-container {
+  margin-left: 30px;
+}
+
+
+
+
+.weekdayName {
   padding: 5px;
 }
 
