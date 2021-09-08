@@ -65,12 +65,30 @@ class App extends React.Component {
   } 
 
 
+
+
+  x
+
+
+
   
   render() {
 
+    // fetch("https://svenskahelgdagar.info/v2/loveefraim2360")
+    // .then(res => res.json())
+    // .then(data => {
+
+    //     // let test = data[0];
+    //     // console.log(test);
+
+    //     console.log("data", data);;
+    // });
+
+    // return <h1>hej</h1>
+
     return (
       <section className="container">
-        <section className="upper-section-container">
+        <section className="upper-section">
           <PrintCal toDoList={this.state.toDoList} getnewtodo={this.savenewtodo}  />
           {/* getSelectedDay={this.saveSelectedDay} */}
           {/* selectedDay={this.state.selectedDay} */}
@@ -80,7 +98,7 @@ class App extends React.Component {
           {/* clickedId={this.state.clickedId} getNewList={this.saveNewList} */}
         </section>
 
-        <section>
+        <section className="lower-section">
           <AllToDoList toDoList={this.state.toDoList} getNewState={this.saveNewState} />
           
           {/* <SelectedDaysToDo /> */}

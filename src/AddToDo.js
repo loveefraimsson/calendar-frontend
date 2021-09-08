@@ -62,14 +62,19 @@ class AddToDo extends React.Component {
             this.props.getNewList(this.state.toDoList)
         })
 
+        alert("Uppgiften har lagts till i kalendern!");
+
+        let field = document.querySelector(".addToDoFormInputToDo");
+        field.value = "";
+
     }
     
     render() {
 
         return  (
             <form onSubmit={this.onSubmit} className="addToDoForm">
-                <input type="text" placeholder="Lägg till todo..." onChange={this.onChange} /> <br />
-                <input type="text" placeholder="Deadline..."  value={this.props.selectedDay} onChange={this.test}/> <br />
+                <input className="addToDoFormInputToDo" type="text" placeholder="Lägg till todo..." onChange={this.onChange} /> <br />
+                <input className="addToDoFormInputDeadline" type="text" placeholder="Deadline..."  value={this.props.selectedDay} onChange={this.test}/> <br />
                 <button>Lägg till</button>
             </form>
         )

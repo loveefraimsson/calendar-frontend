@@ -44,7 +44,7 @@ class AllToDoList extends React.Component {
     render() {
 
         const sortToDoList = this.props.toDoList;
-        console.log("sortToDoList1", sortToDoList);
+        //console.log("sortToDoList1", sortToDoList);
 
         {
             Object.values(sortToDoList).map((task, i) => {
@@ -60,7 +60,7 @@ class AllToDoList extends React.Component {
             })
         }
 
-        console.log("sortToDoList2", sortToDoList);
+        //console.log("sortToDoList2", sortToDoList);
 
 
         // {
@@ -83,6 +83,7 @@ class AllToDoList extends React.Component {
 
         return (
             <div className="allToDoListContainer">
+                <h3>Alla uppgifter</h3>
                 <ul className="allToDoList">
 
 

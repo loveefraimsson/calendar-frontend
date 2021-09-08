@@ -3,6 +3,7 @@ import { months, weekdays } from "moment";
 import React from "react";
 import GetList from "./GetList";
 import AddToDo from "./AddToDo";
+import SelectedDaysToDo from "./SelectedDaysToDo"
 
 let moment = require("moment");
 
@@ -144,6 +145,10 @@ class PrintCal extends React.Component {
 
             //console.log(d);
 
+            if(d < 10) {
+                d = "0" + d;
+            }
+
             let monthToId = this.state.dateObject.format("MM");
             //console.log("monthToId:", monthToId);
 
@@ -220,7 +225,7 @@ class PrintCal extends React.Component {
         })
 
         let daysinmonth = rows.map((d, i) => {
-            return <tr className="calender-week-row">{d}</tr>;
+            return <tr key={i} className="calender-week-row">{d}</tr>;
         });
 
 
@@ -228,7 +233,7 @@ class PrintCal extends React.Component {
 
 
         return(
-            <section className="upper-section">
+            <section className="upper-section-container">
                 <section className="calender-container">
                     <div className="calender-header">
                         <span onClick={e => {this.onPrev();}} className="calendar-button-prev" >-</span>
@@ -246,8 +251,15 @@ class PrintCal extends React.Component {
                     </table>
                 </section>
 
-                <section className="addToDo-container">
-                    <AddToDo toDoList={this.state.toDoList} selectedDay={this.state.selectedDay} getNewList={this.saveNewList}/>
+                <section className="right-section">
+                    <section className="addToDo-container">
+                        <AddToDo toDoList={this.state.toDoList} selectedDay={this.state.selectedDay} getNewList={this.saveNewList}/>
+                    </section>
+                    
+                    <section className="selectedDaysToDo-container">
+                    <SelectedDaysToDo toDoList={this.props.toDoList} selectedDay={this.state.selectedDay}/>  
+                    </section>
+                    
                 </section>
             </section>
             
