@@ -184,17 +184,17 @@ class PrintCal extends React.Component {
                         Object.values(list).map((task, i) => {
                         //console.log("task map", task);
 
-                        if(datum === task.deadline && task.done === "false") {
-                            //console.log("task.title", task.title);
-                            return (
-                                <> 
-                                    <p>{task.title}</p>
-                                    {/* {console.log("Nu har det skrivits ut")} */}
-                                </>
-                                )
-                        }
+                            if(datum === task.deadline && task.done === "false") {
+                                //console.log("task.title", task.title);
+                                return (
+                                    <> 
+                                        <p>{task.title}</p>
+                                        {/* {console.log("Nu har det skrivits ut")} */}
+                                    </>
+                                    )
+                            }
 
-                    })
+                        })
                     } 
                 </td>
             );

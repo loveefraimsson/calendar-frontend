@@ -45,7 +45,7 @@ class AddToDo extends React.Component {
         console.log(newToDo);
         //console.log(theDay);
 
-        fetch("http://localhost:3001/users/delete", {
+        fetch("http://localhost:3001/users/addToDo", {
             method: "post",
             headers: {
                 "Content-Type": "application/json",

@@ -41,10 +41,10 @@ class App extends React.Component {
   
   
 
-  // saveNewState = (saveState) => {
-  //   console.log("saveState", saveState);
-  //   this.setState({toDoList: saveState})
-  // }
+  saveNewState = (saveState) => {
+    console.log("saveState", saveState);
+    this.setState({toDoList: saveState})
+  }
 
 
   // saveNewId = (id) => {
@@ -81,7 +81,8 @@ class App extends React.Component {
         </section>
 
         <section>
-          {/* <AllToDoList  toDoList={this.state.toDoList} getNewState={this.saveNewState} /> */}
+          <AllToDoList toDoList={this.state.toDoList} getNewState={this.saveNewState} />
+          
           {/* <SelectedDaysToDo /> */}
         </section>
       </section>
