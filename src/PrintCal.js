@@ -4,6 +4,7 @@ import React from "react";
 import GetList from "./GetList";
 import AddToDo from "./AddToDo";
 import SelectedDaysToDo from "./SelectedDaysToDo"
+import GetRedDays from "./GetRedDays"
 
 let moment = require("moment");
 
@@ -14,7 +15,21 @@ class PrintCal extends React.Component {
         dateObject: moment(),
         selectedDay: "",
         toDoList: this.props.toDoList,
+        redDays: "",
     }
+
+
+      componentDidMount = () => { 
+
+            GetRedDays((data) => {      
+                //console.log("GetRedDays:", data.dagar[27]);
+                this.setState({redDays: data.dagar})
+            })
+
+        }
+
+
+
 
     //KOMMENTERA FRAM DETTA OM MAPPEN INTE FUNGERAR OCH ÄNDRA ATT DEN MAPPA PROPPS
     // componentDidMount = () => { 
@@ -131,8 +146,33 @@ class PrintCal extends React.Component {
 
         let blanks = [];
         for(let i = 0; i < this.firstDayOfMonth(); i++) {
-            blanks.push(<td className="calender-day empty">{""}</td>);
+            blanks.push(<td key={i} className="calender-day empty">{""}</td>);
         }
+
+        
+
+        let redDays = [];
+
+
+        {
+            Object.values(this.state.redDays).map((day, i) => {
+                //console.log("red day", day);
+
+                if(day[ 'röd dag' ] === "Ja") {
+                    redDays.push(day);
+                    
+                }
+                // console.log("Från if-sats: ", redDays);
+
+                
+
+            })
+        }
+
+        //console.log("Från if-sats: ", redDays);
+
+        
+
 
         
         let daysInMonth = [];
@@ -164,25 +204,13 @@ class PrintCal extends React.Component {
             list = this.props.toDoList;       
             //console.log("list", list);
 
-            // {
-            //     Object.values(list).map((task, i) => {
-            //         console.log("task map", task);
 
-            //         if(datum === task.deadline && task.done === "false") {
-            //             console.log("task.title", task.title);
-            //             return (
-            //                 <> 
-            //                     <p>{task.title}</p>
-            //                     {console.log("Nu har det skrivits ut")}
-            //                 </>
-            //                 )
-            //         }
+  
 
-            //     })
-            // } 
+
 
             daysInMonth.push(
-                <td id={datum} onClick={this.clickOnDay} key={d} className="calendar-day">
+                <td id={datum} onClick={this.clickOnDay} key={d + 200} className="calendar-day">
                     
                     {d}
                     {
@@ -193,7 +221,7 @@ class PrintCal extends React.Component {
                                 //console.log("task.title", task.title);
                                 return (
                                     <> 
-                                        <p>{task.title}</p>
+                                        <p key={i}>{task.title}</p>
                                         {/* {console.log("Nu har det skrivits ut")} */}
                                     </>
                                     )
@@ -201,6 +229,22 @@ class PrintCal extends React.Component {
 
                         })
                     } 
+
+                    {
+                        redDays.map((holiday) => {
+
+                        if(holiday.helgdag && holiday.datum === datum) {
+                            console.log(holiday.helgdag);
+                            return <p className={"holiday"} key={holiday}>{holiday.helgdag}</p>
+                        }
+            
+                        
+                    }) 
+                    }
+
+
+
+
                 </td>
             );
         }
@@ -228,7 +272,8 @@ class PrintCal extends React.Component {
             return <tr key={i} className="calender-week-row">{d}</tr>;
         });
 
-
+        // let array = ["elefant", "anka", "katt", "hund"];
+        // console.log(array.slice(-1));
 
 
 
@@ -236,37 +281,29 @@ class PrintCal extends React.Component {
             <section className="upper-section-container">
                 <section className="calender-container">
                     <div className="calender-header">
-                        <span onClick={e => {this.onPrev();}} className="calendar-button-prev" >-</span>
+                        <span onClick={e => {this.onPrev()}} className="arrow calendar-button-prev" ></span>
                         {this.currentMonth()} {this.currentYear()}
-                        <span onClick={e => {this.onNext();}} className="calendar-button-next" >+</span>
+                        <span onClick={e => {this.onNext()}} className="arrow calendar-button-next" ></span>
                     </div>
-                    <table className="calendar">
-                        
+                    <table className="calendar">                       
                         <thead className="weekdayNames-container">
-                            <tr> {allWeekdayNames}</tr>
+                            <tr>{allWeekdayNames}</tr>
                         </thead>
                         <tbody>
                             {daysinmonth}
                         </tbody>
                     </table>
                 </section>
-
                 <section className="right-section">
                     <section className="addToDo-container">
                         <AddToDo toDoList={this.state.toDoList} selectedDay={this.state.selectedDay} getNewList={this.saveNewList}/>
-                    </section>
-                    
+                    </section>                  
                     <section className="selectedDaysToDo-container">
                     <SelectedDaysToDo toDoList={this.props.toDoList} selectedDay={this.state.selectedDay}/>  
-                    </section>
-                    
+                    </section>                   
                 </section>
             </section>
-            
-
         )
-
-
     }
 }
 

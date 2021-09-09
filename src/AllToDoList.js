@@ -14,8 +14,8 @@ class AllToDoList extends React.Component {
 
     doneToDo = (evt) => {
         console.log(evt.target.id);
-        let clickedToDo = {title: evt.target.id}
-        console.log("clickedToDo", clickedToDo);
+        let clickedToDo = {id: evt.target.id}
+        console.log("clickedId", clickedToDo);
 
         fetch("http://localhost:3001/users/delete", {
             method: "post",
@@ -63,19 +63,6 @@ class AllToDoList extends React.Component {
         //console.log("sortToDoList2", sortToDoList);
 
 
-        // {
-        //     Object.values(sortToDoList).sort(function(a, b) {
-        //         return new Date(a.deadline) - new Date(b.deadline)
-
-                
-        //     })
-        // } 
-
-        //DEN FUNGERANDE
-        // sortToDoList.sort(function(a,b){
-        //     return new Date(a.deadline) - new Date(b.deadline)
-        // })
-        
         
         // console.log("sortToDoList", sortToDoList);
          
@@ -85,34 +72,18 @@ class AllToDoList extends React.Component {
             <div className="allToDoListContainer">
                 <h3>Alla uppgifter</h3>
                 <ul className="allToDoList">
-
-
-                {
-                    Object.values(sortToDoList).map((thing, i) => {
-                    //console.log("task map", task);
-
-                        if(thing.done === "false") {
-                            return <li id={thing.title} className="allToDoListItem" key={i}>{thing.title} | Ska vara klar senast: {thing.deadline} <button id={thing.title} className="doneToDoButton" onClick={this.doneToDo}>Klar</button></li>
-                        }
-
-                    })
-                } 
-
-
-                    {/* {
-                        sortToDoList.map((thing, i) => {
+                    {
+                        Object.values(sortToDoList).map((thing, i) => {
+                        //console.log("task map", task);
 
                             if(thing.done === "false") {
-                                return <li id={thing.title} className="allToDoListItem" key={i}>{thing.title} | Ska vara klar senast: {thing.deadline} <button id={thing.title} className="doneToDoButton" onClick={this.doneToDo}>Klar</button></li>
+                                return <li id={thing.id} className="allToDoListItem" key={i}>{thing.title} | Ska vara klar senast: {thing.deadline} <button id={thing.id} className="doneToDoButton" onClick={this.doneToDo}>Klar</button></li>
                             }
-                           
-                        }) */}
-                    
-
+                        })
+                    } 
                 </ul>
             </div>
         )
-
     }
 }
 

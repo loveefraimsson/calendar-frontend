@@ -9,6 +9,7 @@ function GetList(cb) {
         // console.log(test);
 
         cb(data);
+        
     });
 }
 

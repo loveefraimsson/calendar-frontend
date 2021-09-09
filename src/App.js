@@ -5,6 +5,7 @@ import AllToDoList from "./AllToDoList";
 import AddToDo from "./AddToDo";
 import SelectedDaysToDo from "./SelectedDaysToDo";
 import PrintCal from "./PrintCal";
+import GetRedDays from "./GetRedDays"
 
 
 //let moment = require("moment");
@@ -15,9 +16,12 @@ class App extends React.Component {
   state = {
       toDoList: "",
       //clickedId: "",
-      selectedDay: ""
+      selectedDay: "",
+      //redDays: ""
   }
 
+
+  
  
 
   componentDidMount = () => { 
@@ -28,6 +32,13 @@ class App extends React.Component {
       //console.log("state efter setState: ", this.state.toDoList);
     })
   }
+
+
+
+
+
+
+
 
   // componentDidUpdate = (prevProps, prevState) => {
   //   if (prevState.toDoList === this.state.toDoList) {
@@ -67,44 +78,24 @@ class App extends React.Component {
 
 
 
-  x
+  
 
 
 
   
   render() {
 
-    // fetch("https://svenskahelgdagar.info/v2/loveefraim2360")
-    // .then(res => res.json())
-    // .then(data => {
-
-    //     // let test = data[0];
-    //     // console.log(test);
-
-    //     console.log("data", data);;
-    // });
-
-    // return <h1>hej</h1>
+    
 
     return (
       <section className="container">
         <section className="upper-section">
-          <PrintCal toDoList={this.state.toDoList} getnewtodo={this.savenewtodo}  />
-          {/* getSelectedDay={this.saveSelectedDay} */}
-          {/* selectedDay={this.state.selectedDay} */}
-          <br /> <br />
-          {/* <PrintCalendar toDoList={this.state.toDoList} getNewId={this.saveNewId} /> */}
-          {/* <AddToDo toDoList={this.state.toDoList} getNewList={this.saveNewList}/> */}
-          {/* clickedId={this.state.clickedId} getNewList={this.saveNewList} */}
+          <PrintCal toDoList={this.state.toDoList} getnewtodo={this.savenewtodo} redDays={this.state.redDays} />
         </section>
-
         <section className="lower-section">
           <AllToDoList toDoList={this.state.toDoList} getNewState={this.saveNewState} />
-          
-          {/* <SelectedDaysToDo /> */}
         </section>
-      </section>
-      
+      </section>      
     )
   }
 }

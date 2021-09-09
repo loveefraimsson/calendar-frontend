@@ -27,9 +27,9 @@ class AddToDo extends React.Component {
         this.setState({newToDo: evt.target.value})
     }
 
-    test = (evt) => {
+    onChangeDeadline = (evt) => {
         console.log("evt från test", evt.target.value);
-
+        
     }
 
     // onChangeDeadline = (evt) => {
@@ -74,11 +74,13 @@ class AddToDo extends React.Component {
         return  (
             <form onSubmit={this.onSubmit} className="addToDoForm">
                 <input className="addToDoFormInputToDo" type="text" placeholder="Lägg till todo..." onChange={this.onChange} /> <br />
-                <input className="addToDoFormInputDeadline" type="text" placeholder="Deadline..."  value={this.props.selectedDay} onChange={this.test}/> <br />
+                Klicka på ett datum i kalendern för att lägga till en deadline! <br />
+                <input className="addToDoFormInputDeadline" type="text" placeholder="Deadline..." value={this.props.selectedDay}  onChange={this.onChangeDeadline}/> <br />
                 <button>Lägg till</button>
+
+                
             </form>
         )
-        //onChange={this.onChangeDeadline}      value={this.props.selectedDay}
     }
 }
 
