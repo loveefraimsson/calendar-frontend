@@ -24,7 +24,7 @@ class AddToDo extends React.Component {
         let newToDo = {newToDo: this.state.newToDo, theDeadline: this.props.selectedDay, done: "false"};
         console.log(newToDo);
 
-        fetch("http://localhost:3001/users/addToDo", {
+        fetch("https://calendarwithtodobackend.herokuapp.com/addToDo", {
             method: "post",
             headers: {
                 "Content-Type": "application/json",

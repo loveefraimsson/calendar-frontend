@@ -13,7 +13,7 @@ class AllToDoList extends React.Component {
         let clickedToDo = {id: evt.target.id}
         console.log("clickedId", clickedToDo);
 
-        fetch("http://localhost:3001/users/delete", {
+        fetch("https://calendarwithtodobackend.herokuapp.com/delete", {
             method: "post",
             headers: {
                 "Content-Type": "application/json",

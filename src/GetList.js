@@ -1,7 +1,7 @@
 //Fetcha todo-listan från backend
 
 function GetList(cb) {
-    fetch("http://localhost:3001/users")
+    fetch("https://calendarwithtodobackend.herokuapp.com/")
     .then(res => res.json())
     .then(data => {
 
