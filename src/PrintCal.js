@@ -1,10 +1,6 @@
-//import { Calendar } from "calendar";
-import { months, weekdays } from "moment";
 import React from "react";
-import GetList from "./GetList";
 import AddToDo from "./AddToDo";
 import SelectedDaysToDo from "./SelectedDaysToDo"
-import GetRedDays from "./GetRedDays"
 
 let moment = require("moment");
 
@@ -19,48 +15,9 @@ class PrintCal extends React.Component {
     }
 
 
-      componentDidMount = () => { 
-
-            GetRedDays((data) => {      
-                //console.log("GetRedDays:", data.dagar[27]);
-                this.setState({redDays: data.dagar})
-            })
-
-        }
-
-
-
-
-    //KOMMENTERA FRAM DETTA OM MAPPEN INTE FUNGERAR OCH ÄNDRA ATT DEN MAPPA PROPPS
-    // componentDidMount = () => { 
-
-    //     GetList((data) => {      
-    //       //console.log(data);
-    //       this.setState({toDoList: data})
-    //       //console.log("state efter setState: ", this.state.toDoList);
-    //     })
-    // }
-
-
-
-    // componentDidUpdate = (prevProps, prevState) => {
-    //     if (prevState.toDoList === this.state.toDoList) {
-
-    //         this.setState({toDoList: })
-    //         // GetList((data) => {
-    //         //     console.log("data", data);
-    //         //     this.setState({toDoList: data});
-    //         // }, this.state.toDoList);
-    //     }  
-    // }
-
-
-
-
     firstDayOfMonth = () => {
         let dateObject = this.state.dateObject;
         let firstDay = moment(dateObject).startOf("month").format("d"); 
-
         return firstDay;
     }
 
@@ -76,6 +33,7 @@ class PrintCal extends React.Component {
         return this.state.dateObject.format("YYYY");
     }
 
+
     onPrev = () => {
         console.log("onPrev()");
 
@@ -84,7 +42,6 @@ class PrintCal extends React.Component {
         });
         
     };
-
 
     onNext = () => {
         console.log("onNext()");
@@ -95,28 +52,18 @@ class PrintCal extends React.Component {
     };  
 
 
-
     clickOnDay = (evt) => {
         console.log("on evt click", evt.target.id);
-        this.setState({selectedDay: evt.target.id})
-
-        //this.props.getSelectedDay(evt.target.id);
-
+        this.setState({selectedDay: evt.target.id});
     }
-
-
-
 
     
     monthToId = () => {
-        // let monthToId = this.state.dateObject.format("MM");
-        // console.log("monthToId:", monthToId);
         return this.state.dateObject.format("MM")
     }
 
     yearToId = () => {
         let yearToId = this.state.dateObject.format("YYYY");
-       // console.log("yearToId:", yearToId);
        return yearToId;
     }
 
@@ -124,13 +71,12 @@ class PrintCal extends React.Component {
         this.setState({toDoList: newList})
         this.props.getnewtodo(this.state.toDoList)
     }
-    
+
+  
 
     render() {
 
         let weekdayNames = moment.weekdays();
-        //console.log("weekdays:", weekdayNames);
-
 
         let allWeekdayNames = weekdayNames.map(day => {
             return (
@@ -141,110 +87,45 @@ class PrintCal extends React.Component {
         })
 
 
-
-
-
         let blanks = [];
         for(let i = 0; i < this.firstDayOfMonth(); i++) {
             blanks.push(<td key={i} className="calender-day empty">{""}</td>);
         }
 
         
-
-        let redDays = [];
-
-
-        {
-            Object.values(this.state.redDays).map((day, i) => {
-                //console.log("red day", day);
-
-                if(day[ 'röd dag' ] === "Ja") {
-                    redDays.push(day);
-                    
-                }
-                // console.log("Från if-sats: ", redDays);
-
-                
-
-            })
-        }
-
-        //console.log("Från if-sats: ", redDays);
-
-        
-
-
-        
         let daysInMonth = [];
         for(let d = 1; d <= this.daysInMonth(); d++) {
-            //console.log(d);
-            // let mo = this.monthToId();
-            // console.log(mo);
-            // this.monthToId()
-            // {this.yearToId()}
-
-            //console.log(d);
 
             if(d < 10) {
                 d = "0" + d;
             }
 
             let monthToId = this.state.dateObject.format("MM");
-            //console.log("monthToId:", monthToId);
 
             let yearToId = this.state.dateObject.format("YYYY");
-            //console.log("yearToId:", yearToId);
 
             let datum = yearToId + "-" + monthToId + "-" + d;
-            //console.log(datum);
 
 
             let list = [];
-            //HÄR KAN DU BEHÖVA ÄNDRA TILL STATE OM DU KOMMENTERAR FRAM DÄR UPPE
             list = this.props.toDoList;       
-            //console.log("list", list);
-
-
-  
-
-
 
             daysInMonth.push(
                 <td id={datum} onClick={this.clickOnDay} key={d + 200} className="calendar-day">
                     
-                    {d}
+                    <p className="date">{d}</p>
                     {
                         Object.values(list).map((task, i) => {
-                        //console.log("task map", task);
-
                             if(datum === task.deadline && task.done === "false") {
-                                //console.log("task.title", task.title);
                                 return (
                                     <> 
-                                        <p key={i}>{task.title}</p>
-                                        {/* {console.log("Nu har det skrivits ut")} */}
+                                        <p onClick={this.clickOnDay} key={i} id={datum} className="toDo">{task.title}</p>
                                     </>
                                     )
                             }
 
                         })
                     } 
-
-                    {
-                        redDays.map((holiday) => {
-
-                        if(holiday.helgdag && holiday.datum === datum) {
-                            console.log(holiday.helgdag);
-                            return <p className={"holiday"} key={holiday}>{holiday.helgdag}</p>
-                        }
-            
-                        
-                    }) 
-                    }
-
-
-
-
                 </td>
             );
         }
@@ -272,17 +153,13 @@ class PrintCal extends React.Component {
             return <tr key={i} className="calender-week-row">{d}</tr>;
         });
 
-        // let array = ["elefant", "anka", "katt", "hund"];
-        // console.log(array.slice(-1));
-
-
 
         return(
             <section className="upper-section-container">
                 <section className="calender-container">
                     <div className="calender-header">
                         <span onClick={e => {this.onPrev()}} className="arrow calendar-button-prev" ></span>
-                        {this.currentMonth()} {this.currentYear()}
+                        <p className="monthAndYear">{this.currentMonth()} {this.currentYear()}</p>
                         <span onClick={e => {this.onNext()}} className="arrow calendar-button-next" ></span>
                     </div>
                     <table className="calendar">                       
@@ -309,89 +186,3 @@ class PrintCal extends React.Component {
 
 
 export default PrintCal;
-
-
-
-        // let datum = daysInMonth;
-        // console.log("datum", datum[9]._owner.memoizedState.dateObject._d);
-
-
-        // let mån = this.currentMonth();
-
-        // console.log("mån:", mån);
-        
-
-        // for (let d = 1; d <= this.daysInMonth(); d++) {
-        //     let currentDay = d == this.currentDay() ? "today" : "";
-        //     daysInMonth.push(
-        //       <td key={d} className={`calendar-day ${currentDay}`}>
-        //         <span
-        //           onClick={e => {
-        //             this.onDayClick(e, d);
-        //           }}
-        //         >
-        //           {d}
-        //         </span>
-        //       </td>
-        //     );
-        //   }
-
-
-        // for(let d = 1; d<=this.daysInMonth; d++) {
-        //     let currentDay = d == this.currentDay() ? "today" : "";
-
-        //     daysInMonth.push (
-        //         <td key={da} className={`calendar-day ${currentDay}`}>
-        //             <span onClick={e => {
-        //                 this.onDayClick(e, da);
-        //             }}>
-        //                 {da}
-        //             </span>
-        //         </td>
-        //     );
-        // }
-
-
-
-
-        //console.log(this.currentMonth.format("MM"));
-        //console.log(daysInMonth);
-
-
-        //return allWeekdayNames;
-
-
-                    // <table>
-            //     <thead>
-            //         {weekdayshortname}
-            //     </thead>
-            // </table>
-
-
-    // onDayClick = (e, da) => {
-    //     this.setState({selectedDay: da},() => {
-    //          console.log("SELECTED DAY: ", this.state.selectedDay);
-    //       }
-    //     );
-    // }
-
-
-    // onClick = (evt) => {
-    //     console.log("on evt click", evt);
-
-    // }
-
-
-        // return (
-        //     <section className="calendar">
-        //         <header className="calendar-header">
-
-        //         </header>
-        //         <div className="dayBoxContainer">
-        //             <div>
-        //                 {this.printDays()}
-                        
-        //             </div>
-        //         </div>
-        //     </section>
-        // )

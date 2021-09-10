@@ -1,25 +1,20 @@
 import React from "react";
 
 class SelectedDaysToDo extends React.Component {
+    
     render() {
 
-        //let selectedDayList = [];
         let selectedDayList = this.props.toDoList;
-        //console.log("selectedDayList1", selectedDayList);
-
-        // {
-                    
-
-
-        //     })
-        // } 
 
         return (
             <section className="selectedDaysToDoBox">
-                <ul>
-                    <p className="selectedDaysToDoBoxP1">Klicka på en dag för att se dess uppgifter</p>
-                    <h3 className="H3-choosedDay">Vald dag: {this.props.selectedDay}</h3>
-                    <h3 className="H3-todaysToDos">Dagens uppgifter:</h3>
+
+                <p className="selectedDaysToDoBoxP1">Klicka på en dag för att se dess uppgifter</p>
+                <h3 className="H3-choosedDay">Vald dag: {this.props.selectedDay}</h3>
+                <h3 className="H3-todaysToDos">Dagens uppgifter:</h3>
+
+                <ul className="selectedDaysToDoList">
+
                     {                   
                         Object.values(selectedDayList).map((task, i) => {        
                             let selectedDay = this.props.selectedDay;          

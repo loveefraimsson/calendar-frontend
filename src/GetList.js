@@ -5,9 +5,6 @@ function GetList(cb) {
     .then(res => res.json())
     .then(data => {
 
-        // let test = data[0];
-        // console.log(test);
-
         cb(data);
         
     });

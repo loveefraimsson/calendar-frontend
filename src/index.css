@@ -1,3 +1,10 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #999999;
+}
+
 .upper-section-container {
   display: flex;
 }
@@ -7,104 +14,234 @@
 }
 
 
+/*-------------------------- KALENDERN------------------------- */
+.calender-container {
+  width: 70%;
+  margin-left: 30px;
+  margin-top: 30px;
+  background-color: #e6e6e6;
+}
+
+.calendar {
+  width: 100%;
+  /* border-collapse: collapse; */
+  
+}
+
+
+.calender-header {
+  text-align: center;
+  height: 50px;
+  border: 1px solid black; 
+
+}
+
+.calender-header .monthAndYear {
+  display: inline-block;
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #248f24;
+}
+
+
+.arrow {
+  border: solid #248f24;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.calendar-button-prev {
+  float: left;
+  margin-left: 30px;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.calendar-button-next {
+  float: right;
+  margin-right: 30px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.weekdayNames-container {
+  border: 1px solid black;
+}
+
+.weekdayName {
+  border: 1px solid black;
+}
 
 
 .weekdayName {
   padding: 5px;
 }
 
+.empty {
+  border: 1px solid black;
+}
+
 .calendar-day {
   border: 1px solid black;
   cursor: pointer;
+  height: 70px;
+  width: calc(100% / 7);
+  vertical-align: 0; 
 }
 
-.arrow {
-  border: solid black;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 3px;
+.calendar-day:hover {
+  background-color: #bfbfbf;
+}
+
+.calendar-day .date {
+  margin: 0;
+  padding: 0;
+  width: fit-content;
+  color: #248f24;
+}
+
+.calendar-day .toDo {
+  margin: 0;
+  padding: 0;
+  width: fit-content;
+  font-size: 12px;
+}
+
+
+
+
+/*--------------------------ADD TODO------------------------- */
+
+.addToDoForm {
+  background-color: #1f7a1f;
+  padding: 25px;
+  margin-top: 30px;
+  margin-right: 30px;
+  width: fit-content;
+  border: 1px solid black;
+}
+
+.addToDoFormInputToDo {
+  padding: 7px;
+  font-size: 16px;
+  background-color: #e6e6e6;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.addToDoForm p {
+  font-size: 14px;
+  margin-bottom: 1px;
+  color: #e6e6e6;
+}
+
+.addToDoFormInputDeadline {
+  padding: 7px;
+  font-size: 16px;
+  background-color: #e6e6e6;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.addToDoForm button {
+  margin-top: 20px;
+  padding: 6px;
+  font-size: 14px;
   cursor: pointer;
 }
 
-
-
-.calendar-button-prev {
-  transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
-}
-
-.calendar-button-next {
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
+.addToDoForm button:hover {
+  background-color: #bfbfbf;
 }
 
 
 
+/*--------------------------SELECTED DAYS TODOS------------------------- */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* CALENDER */
-/* variables & mixins */
-/* @white: #FFFFFF;
-@ltGrey: #EFEFEF;
-@mdGrey: #C0C0C0;
-@dkGrey: #CCCCCC;
-@secondary:#2875C7;
-@dkSecondary: darken(@secondary,10%);
-@ltSecondary: lighten(@secondary,45%);
-@borderColor: @dkGrey;
-@background: @white; */
-
-/* .vertical-center {
-  display: flex;
-  justify-content:center;
-  align-items: center;
-} */
-
-/* // meat of the matter */
-/* html {
-    font-size: 62.5%;
-} */
-
-/* .calendar {
-  height: 800px;
-  width: 800px;
-  border: 2px solid black;
+.selectedDaysToDoBox {
+  background-color: #145214;
+  color:#e6e6e6;
+  margin-right: 30px;
+  margin-top: 30px;
+  height: fit-content;
+  padding: 25px;
+  border: 1px solid black;
 }
 
-.calendar-header {
-  height: 100px;
-  border: 2px solid black;
-}
-
-.dayBox {
-  border: 2px solid black;
-  height: 50px;
-  width: 50px;
+.selectedDaysToDoBoxP1 {
+  /* margin: 5px 0px 5px 0px; */
+  margin: 0;
+  padding: 5px 0px 8px 0px;
+  font-size: 14px;
+  font-style: italic;
 }
 
 
-.dayBoxContainer {
-  
-} */
+.H3-choosedDay {
+  margin: 7px 0px;
+}
+
+.H3-todaysToDos {
+  margin: 10px 0px 5px 0px;
+  text-decoration: underline;
+}
+
+.selectedDaysToDoList {
+  margin: 0px;
+}
 
 
 
-/* body {
+
+/*--------------------------ALL TODO-LIST------------------------- */
+
+.allToDoListContainer {
+  background-color: rgba(0, 153, 0, 0.7);
+  width: fit-content;
+  padding: 25px;
+  margin-top: 30px;
+  margin-left: 30px;
+  border: 1px solid black;
+}
+
+.allToDoListContainer h3 {
+  margin: 0;
+  text-decoration: underline;
+}
+
+.allToDoListContainer .allToDoListItem {
+  margin: 2px;
+}
+
+.allToDoListContainer .shallBeDone {
+  font-style: italic;
+}
+.allToDoListContainer button {
+  margin-left: 15px;
+  cursor: pointer;
+  padding: 3px 7px;
+  border: 1px solid #333333;
+}
+
+.allToDoListContainer button:hover {
+  background-color: #bfbfbf;
+  border: 1px solid black;
+}
+
+
+
+
+/* 
+body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
