@@ -106,13 +106,12 @@ class PrintCal extends React.Component {
 
             let datum = yearToId + "-" + monthToId + "-" + d;
 
-
             let list = [];
-            list = this.props.toDoList;       
-
+            list = this.props.toDoList;     
+            
             daysInMonth.push(
-                <td id={datum} onClick={this.clickOnDay} key={d + 200} className="calendar-day">
-                    
+                <td id={datum} onClick={this.clickOnDay} key={d + 200} className="calendar-day" >
+                   
                     <p className="date">{d}</p>
                     {
                         Object.values(list).map((task, i) => {
@@ -121,7 +120,7 @@ class PrintCal extends React.Component {
                                     <> 
                                         <p onClick={this.clickOnDay} key={i} id={datum} className="toDo">{task.title}</p>
                                     </>
-                                    )
+                                )
                             }
 
                         })
